@@ -22,47 +22,17 @@ export const Hero = () => {
     window.open("https://drive.google.com/uc?export=download&id=14araRQsQeCU46VgCFiRsTSZbRyZwBl61", "_blank")
   }
 
+const handleProjectNavigate = () => {
+  const section = document.getElementById("projects");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden">
-        <div className="fixed px-20  w-full top-0">
-        <nav className="relative z-10 flex justify-between items-center p-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center space-x-2"
-          >
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">W</span>
-            </div>
-            <span className="text-white font-semibold text-lg">Walid Hasan</span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden md:flex space-x-8"
-          >
-            <a href="#home" className="text-white/80 hover:text-white transition-colors">
-              Home
-            </a>
-            <a href="#about" className="text-white/80 hover:text-white transition-colors">
-              About
-            </a>
-            <a href="#experience" className="text-white/80 hover:text-white transition-colors">
-              Experience
-            </a>
-            <a href="#projects" className="text-white/80 hover:text-white transition-colors">
-              Projects
-            </a>
-            <a href="#contact" className="text-white/80 hover:text-white transition-colors">
-              Contact
-            </a>
-          </motion.div>
-        </nav>
-      </div>
-      <div className="max-w-7xl mx-auto pt-10 px-3">
+      <div className="max-w-7xl mx-auto px-3">
       {/* Background geometric elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -92,7 +62,42 @@ export const Hero = () => {
       </div>
 
       {/* Navigation */}
-    
+      <nav className="relative  z-10 flex justify-between items-center p-6 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center space-x-2"
+        >
+          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-sm">W</span>
+          </div>
+          <span className="text-white font-semibold text-lg">Walid Hasan</span>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="hidden md:flex space-x-8"
+        >
+          <a href="#home" className="text-white/80 hover:text-white transition-colors">
+            Home
+          </a>
+          <a href="#about" className="text-white/80 hover:text-white transition-colors">
+            About
+          </a>
+          <a href="#experience" className="text-white/80 hover:text-white transition-colors">
+            Experience
+          </a>
+          <a href="#projects" className="text-white/80 hover:text-white transition-colors">
+            Projects
+          </a>
+          <a href="#contact" className="text-white/80 hover:text-white transition-colors">
+            Contact
+          </a>
+        </motion.div>
+      </nav>
 
       {/* Main content */}
       <div className="relative z-10 flex items-center justify-between min-h-[calc(100vh-100px)] px-6 lg:px-12">
@@ -136,14 +141,14 @@ export const Hero = () => {
           >
             <Button
               onClick={handleDownloadCV}
-              className="bg-blue-600 hover:bg-blue-700 cursor-pointer text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+              className=" bg-white/10 hover:bg-white/30 cursor-pointer text-white px-9 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
             >
               <Download className="w-4 h-4 mr-2" />
               Download CV
             </Button>
             <Button
-              variant="outline"
-              className="border-white/20 cursor-pointer text-white hover:bg-white/10 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 bg-transparent"
+              onClick={handleProjectNavigate}
+              className="bg-white/10 hover:bg-white/30 cursor-pointer text-white px-9 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
             >
               See my work
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -157,7 +162,7 @@ export const Hero = () => {
             className="flex items-center space-x-1"
           >
             <ChevronDown className="w-4 h-4 text-white/60" />
-            <span className="text-white/60 text-sm">Scroll down</span>
+            <a href="#footer" className="text-white/60 text-sm">Scroll down</a>
           </motion.div>
         </div>
 
