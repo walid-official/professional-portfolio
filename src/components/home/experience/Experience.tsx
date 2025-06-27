@@ -1,15 +1,29 @@
 "use client"
-
 import { motion } from "framer-motion"
-
+import { useEffect } from "react";
 export const Experience = () => {
+
+useEffect(() => {
+    if (window.location.hash === "#experience") {
+    
+      const timer = setTimeout(() => {
+        const element = document.getElementById("experience");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+
   return (
-    <section className="py-20 bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 relative overflow-hidden">
+    <section id="experience" className="py-20 bg-gradient-to-br from-slate-200 via-blue-200 to-purple-200 relative overflow-hidden">
       {/* Background organic shapes */}
       <div className="absolute inset-0">
         {/* Large pink blob top-left */}
         <motion.div
-          className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-br from-pink-300 to-pink-400 rounded-full opacity-60"
+          className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-br from-blue-300 to-blue-400 rounded-full opacity-60"
           style={{
             clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
           }}
@@ -223,10 +237,10 @@ export const Experience = () => {
             viewport={{ once: true }}
             className="text-center mt-12 max-w-4xl mx-auto"
           >
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-200">
               <h3 className="text-2xl font-bold text-slate-900 mb-4">Professional Experience at Factoryze</h3>
               <p className="text-slate-700 leading-relaxed text-lg mb-4">
-                During my 6 months at <a href="https://factoryze.tech/" target="_blank" className="font-semibold text-blue-600">Factoryze</a>, I've had the
+                During my 6 months at <a href="https://factoryze.tech/" target="_blank" className="font-semibold text-blue-600">Factoryze</a>, I&apos;ve had the
                 opportunity to work with cutting-edge technologies and contribute to enterprise-level projects. My
                 experience includes developing scalable web applications using{" "}
                 <span className="font-semibold text-purple-600">Next.js</span> and{" "}
@@ -236,7 +250,7 @@ export const Experience = () => {
               <p className="text-slate-700 leading-relaxed text-lg">
                 This professional experience has strengthened my skills in modern web development, taught me industry
                 best practices, and enhanced my ability to work in collaborative environments. Every project has been a
-                learning opportunity, helping me grow as a developer and contribute meaningfully to the team's success.
+                learning opportunity, helping me grow as a developer and contribute meaningfully to the team&apos;s success.
               </p>
             </div>
           </motion.div>

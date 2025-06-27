@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -14,11 +14,23 @@ export const Contact = () => {
   const [name, setName] = useState("")
   const [project, setProject] = useState("")
 
+  useEffect(() => {
+      if (window.location.hash === "#contact") {
+      
+        const timer = setTimeout(() => {
+          const element = document.getElementById("contact");
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+        return () => clearTimeout(timer);
+      }
+    }, []);
+  
+
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault()
-
     if (!form.current) return
-
     emailjs.sendForm("service_zkobzwh", "template_kvl3fu6", form.current, "n9eOVgGeK1V5CpTT0").then(
       (result) => {
         console.log("SUCCESS!", result.text)
@@ -42,15 +54,13 @@ export const Contact = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 relative overflow-hidden">
+    <div id="contact" className="min-h-screen bg-gray-50 relative overflow-hidden">
       {/* Background geometric shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 right-20 w-96 h-96 rounded-full border border-gray-300"></div>
         <div className="absolute top-40 right-40 w-64 h-64 rounded-full border border-gray-300"></div>
         <div className="absolute bottom-20 left-20 w-80 h-80 rounded-full border border-gray-300"></div>
       </div>
-
-   
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-8 py-16">
@@ -80,7 +90,7 @@ export const Contact = () => {
                 </p>
 
                 <p className="text-gray-600 text-lg leading-relaxed">
-                  and I'm looking for a team to help me with{" "}
+                  and I&apos;m looking for a team to help me with{" "}
                   <Textarea
                     name="message"
                     value={project}

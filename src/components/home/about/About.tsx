@@ -218,9 +218,25 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Linkedin } from 'lucide-react';
+import { useEffect } from "react";
+// import { Linkedin } from 'lucide-react';
 
 export const About = () => {
+
+useEffect(() => {
+    if (window.location.hash === "#about") {
+    
+      const timer = setTimeout(() => {
+        const element = document.getElementById("about");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+
   const timelineItems = [
     {
       year: "2025",
@@ -249,7 +265,7 @@ export const About = () => {
   ]
 
   return (
-    <section className="py-20 bg-gray-50 relative">
+    <section id="about" className="py-20 bg-gray-50 relative">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
              <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
@@ -276,7 +292,7 @@ export const About = () => {
           className="text-center mb-20 max-w-2xl mx-auto"
         >
           <p className="text-gray-600 leading-relaxed text-lg">
-            My name is Walid Hasan and I am a web developer and designer from Bangladesh. I'm passionate about creating
+            My name is Walid Hasan and I am a web developer and designer from Bangladesh. I&apos;m passionate about creating
             modern web applications using cutting-edge technologies. If you enjoy my work, want to say hello or like to
             collaborate with me, you can contact me via{" "}
             <a href="mailto:your-email@example.com" className="text-blue-600 hover:underline">

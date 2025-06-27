@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -51,6 +51,20 @@ export const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
 
+  useEffect(() => {
+    if (window.location.hash === "#projects") {
+    
+      const timer = setTimeout(() => {
+        const element = document.getElementById("projects");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+
   const nextProject = () => {
     setCurrentIndex((prev) => (prev + 1) % Math.max(1, projectsData.length - 2))
   }
@@ -73,7 +87,7 @@ export const Projects = () => {
   const visibleProjects = getVisibleProjects()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 p-8">
+    <div id="projects" className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 p-8">
       <div className="max-w-7xl mx-auto">
         {/* Main Content */}
         <div className="text-center mb-12">

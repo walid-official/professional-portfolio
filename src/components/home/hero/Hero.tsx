@@ -24,7 +24,45 @@ export const Hero = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-3">
+        <div className="fixed px-20  w-full top-0">
+        <nav className="relative z-10 flex justify-between items-center p-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center space-x-2"
+          >
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">W</span>
+            </div>
+            <span className="text-white font-semibold text-lg">Walid Hasan</span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="hidden md:flex space-x-8"
+          >
+            <a href="#home" className="text-white/80 hover:text-white transition-colors">
+              Home
+            </a>
+            <a href="#about" className="text-white/80 hover:text-white transition-colors">
+              About
+            </a>
+            <a href="#experience" className="text-white/80 hover:text-white transition-colors">
+              Experience
+            </a>
+            <a href="#projects" className="text-white/80 hover:text-white transition-colors">
+              Projects
+            </a>
+            <a href="#contact" className="text-white/80 hover:text-white transition-colors">
+              Contact
+            </a>
+          </motion.div>
+        </nav>
+      </div>
+      <div className="max-w-7xl mx-auto pt-10 px-3">
       {/* Background geometric elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -54,39 +92,7 @@ export const Hero = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-10 flex justify-between items-center p-6 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center space-x-2"
-        >
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">W</span>
-          </div>
-          <span className="text-white font-semibold text-lg">Walid Hasan</span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="hidden md:flex space-x-8"
-        >
-          <a href="#home" className="text-white/80 hover:text-white transition-colors">
-            Home
-          </a>
-          <a href="#about" className="text-white/80 hover:text-white transition-colors">
-            About
-          </a>
-          <a href="#portfolio" className="text-white/80 hover:text-white transition-colors">
-            Portfolio
-          </a>
-          <a href="#contact" className="text-white/80 hover:text-white transition-colors">
-            Contact
-          </a>
-        </motion.div>
-      </nav>
+    
 
       {/* Main content */}
       <div className="relative z-10 flex items-center justify-between min-h-[calc(100vh-100px)] px-6 lg:px-12">
@@ -107,7 +113,7 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-4xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight"
           >
-            Hello, my name's{" "}
+            Hello, my name&apos;s{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Walid.</span>
           </motion.h1>
 
@@ -117,7 +123,7 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-white/70 text-lg lg:text-xl mb-8 leading-relaxed max-w-xl"
           >
-            I'm a Frontend MERN Stack Developer from Bangladesh. Currently working as a
+            I&apos;m a Frontend MERN Stack Developer from Bangladesh. Currently working as a
             <span className="text-cyan-400 font-medium"> Full Stack Developer</span> specializing in modern web
             applications.
           </motion.p>
@@ -130,14 +136,14 @@ export const Hero = () => {
           >
             <Button
               onClick={handleDownloadCV}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+              className="bg-blue-600 hover:bg-blue-700 cursor-pointer text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
             >
               <Download className="w-4 h-4 mr-2" />
               Download CV
             </Button>
             <Button
               variant="outline"
-              className="border-white/20 text-white hover:bg-white/10 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 bg-transparent"
+              className="border-white/20 cursor-pointer text-white hover:bg-white/10 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 bg-transparent"
             >
               See my work
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -218,7 +224,7 @@ export const Hero = () => {
           onClick={handleLinkedin}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-all duration-300"
+          className="w-12 h-12 bg-white/60  backdrop-blur-lg border border-dark rounded-full flex items-center justify-center cursor-pointer text-black hover:text-white hover:bg-blue-600 transition-all duration-300"
         >
           <Linkedin className="w-5 h-5" />
         </motion.button>
@@ -226,7 +232,7 @@ export const Hero = () => {
           onClick={handleTwitter}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-blue-400 transition-all duration-300"
+          className="w-12 h-12 bg-white/60  backdrop-blur-lg border border-dark rounded-full flex items-center justify-center cursor-pointer text-black hover:text-white hover:bg-blue-400 transition-all duration-300"
         >
           <Twitter className="w-5 h-5" />
         </motion.button>
@@ -234,7 +240,7 @@ export const Hero = () => {
           onClick={handleGithub}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-gray-700 transition-all duration-300"
+          className="w-12 h-12 bg-white/60  backdrop-blur-lg border border-dark rounded-full flex items-center justify-center cursor-pointer text-black hover:text-white hover:bg-blue-400 transition-all duration-300"
         >
           <Github className="w-5 h-5" />
         </motion.button>
@@ -251,7 +257,7 @@ export const Hero = () => {
           onClick={handleLinkedin}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-all duration-300"
+          className="w-12 h-12 bg-white/60 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center cursor-pointer text-black hover:text-white hover:bg-blue-600 transition-all duration-300"
         >
           <Linkedin className="w-5 h-5" />
         </motion.button>
@@ -259,7 +265,7 @@ export const Hero = () => {
           onClick={handleTwitter}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-blue-400 transition-all duration-300"
+          className="w-12 h-12 bg-white/60 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center cursor-pointer text-black hover:text-white hover:bg-blue-400 transition-all duration-300"
         >
           <Twitter className="w-5 h-5" />
         </motion.button>
@@ -267,7 +273,7 @@ export const Hero = () => {
           onClick={handleGithub}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-gray-700 transition-all duration-300"
+          className="w-12 h-12 bg-white/60 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center cursor-pointer text-black hover:text-white hover:bg-gray-700 transition-all duration-300"
         >
           <Github className="w-5 h-5" />
         </motion.button>
