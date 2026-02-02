@@ -1,57 +1,66 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useEffect, useRef, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import emailjs from "@emailjs/browser"
-import { useToast } from "@/hooks/use-toast"
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import emailjs from "@emailjs/browser";
+import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
-  const form = useRef<HTMLFormElement>(null)
-  const { toast } = useToast()
-  const [name, setName] = useState("")
-  const [project, setProject] = useState("")
+  const form = useRef<HTMLFormElement>(null);
+  const { toast } = useToast();
+
+  const [name, setName] = useState("");
+  const [project, setProject] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
-      if (window.location.hash === "#contact") {
-      
-        const timer = setTimeout(() => {
-          const element = document.getElementById("contact");
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 100);
-        return () => clearTimeout(timer);
-      }
-    }, []);
-  
+    if (window.location.hash === "#contact") {
+      const timer = setTimeout(() => {
+        const element = document.getElementById("contact");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const sendEmail = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!form.current) return
-    emailjs.sendForm("service_zkobzwh", "template_kvl3fu6", form.current, "n9eOVgGeK1V5CpTT0").then(
-      (result) => {
-        console.log("SUCCESS!", result.text)
-        toast({
-          title: "Message sent successfully!",
-          description: "Thank you for your message. We'll get back to you soon.",
-        })
-        form.current?.reset()
-        setName("")
-        setProject("")
-      },
-      (error) => {
-        console.error("FAILED...", error.text)
-        toast({
-          title: "Failed to send message",
-          description: "Please try again later or contact us directly.",
-          variant: "destructive",
-        })
-      },
-    )
-  }
+    e.preventDefault();
+    if (!form.current) return;
+
+    emailjs
+      .sendForm(
+        "service_zkobzwh",
+        "template_kvl3fu6",
+        form.current,
+        "n9eOVgGeK1V5CpTT0"
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result.text);
+          toast({
+            title: "Message sent successfully!",
+            description: "Thank you for your message. We'll get back to you soon.",
+          });
+          form.current?.reset();
+          setName("");
+          setEmail("");
+          setProject("");
+        },
+        (error) => {
+          console.error("FAILED...", error.text);
+          toast({
+            title: "Failed to send message",
+            description: "Please try again later or contact us directly.",
+            variant: "destructive",
+          });
+        }
+      );
+  };
 
   return (
     <div id="contact" className="min-h-screen bg-gray-50 relative overflow-hidden">
@@ -76,6 +85,9 @@ export const Contact = () => {
             </div>
 
             <form ref={form} onSubmit={sendEmail} className="space-y-6">
+              {/* Required hidden input for EmailJS */}
+              <input type="hidden" name="to_name" value="Walid" />
+
               <div className="space-y-4">
                 <p className="text-gray-600 text-lg leading-relaxed">
                   Hello there, my name is{" "}
@@ -101,8 +113,6 @@ export const Contact = () => {
                     required
                   />
                 </p>
-
-                <Input name="from_email" type="email" placeholder="your email address" className="hidden" required />
               </div>
 
               <div className="pt-8">
@@ -111,6 +121,8 @@ export const Contact = () => {
                   <Input
                     name="from_email"
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="your email address"
                     className="inline-block w-64 border-0 border-b-2 border-gray-300 rounded-none bg-transparent px-2 py-1 focus:border-gray-900 focus:ring-0"
                     required
@@ -155,7 +167,7 @@ export const Contact = () => {
               </div>
 
               <div className="bg-gray-800 text-white p-4 rounded shadow-lg">
-                <p className="font-mono text-sm">Malotinagar, Bogura, Bangladash</p>
+                <p className="font-mono text-sm">Malotinagar, Bogura, Bangladesh</p>
               </div>
 
               {/* Floating logo */}
@@ -167,5 +179,5 @@ export const Contact = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
